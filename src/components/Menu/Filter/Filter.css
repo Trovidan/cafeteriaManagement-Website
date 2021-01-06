@@ -1,0 +1,18 @@
+.Filter-Component-body{
+    display: block;
+}
+
+.filter-tab-wrapper{
+    font-size: 14px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    text-transform: none;
+    font-weight: 500;
+    flex-direction: row!important;
+    column-gap: 6px;
+}
+
+.filter-tab-wrapper > *:first-child{
+    margin-bottom: 0px!important;
+    font-size: 20px;
+}
