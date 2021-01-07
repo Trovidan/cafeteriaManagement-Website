@@ -19,8 +19,7 @@ const Register = () => {
     password2:''
   }
 
- 
-
+  const [submit,setSubmit] = React.useState(false)
   // function containg regex for email validation
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -83,9 +82,7 @@ const Register = () => {
   const verifyRecaptcha = ()=>{
   //  alert('verification done');
   console.log('verified');
-    console.log(document.getElementById('registrationForm'));
-    document.getElementById('registrationForm').submit();
-
+    window.submitform();
   }
 
   const errorRecaptcha = ()=> {
@@ -121,16 +118,20 @@ const Register = () => {
     >
 
     {formik => {
-      {console.log(formik);}
+      // {console.log(formik);}
+      window.submitform = ()=>{
+        formik.submitForm();
+      }
       return(
         <div className="w-25 mx-auto mt-5 mh-100 border border-dark p-3">
         <h4 className="text-center">Sign Up</h4>
               
-        <Form id='registrationForm'>
-          <div class="form-row">
-            <div class="form-group col-md-6">
+        <form onReset={formik.handleReset} id='registrationForm' action="#" onSubmit={formik.handleSubmit} >
+
+          <div className="form-row">
+            <div className="form-group col-md-6">
               <label htmlFor="firstName">First Name</label>
-              <Field type="text" class="form-control" 
+              <Field type="text" className="form-control" 
               id="firstName"
               name="firstName"  
               placeholder="Nikhil"
@@ -140,9 +141,9 @@ const Register = () => {
               </ErrorMessage>
             </div>
             
-            <div class="form-group col-md-6">
+            <div className="form-group col-md-6">
               <label htmlFor="lastName">Last Name</label>
-              <Field type="text" class="form-control" 
+              <Field type="text" className="form-control" 
               id="lastName" 
               name="lastName" 
               placeholder="Pareek"
@@ -153,9 +154,9 @@ const Register = () => {
               </div>
           </div>
 
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="email">Email</label>
-            <Field type="text" class="form-control"
+            <Field type="text" className="form-control"
             id="email" name="email"
             placeholder="nikhilPareek33@gmail.com"/>
 
@@ -164,9 +165,9 @@ const Register = () => {
             </ErrorMessage>
           </div>
         
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="password1">Password</label>
-            <Field type="password" class="form-control"
+            <Field type="password" className="form-control"
             id="password1"
             name="password1"
             placeholder="Atleast 6 characters"
@@ -176,9 +177,9 @@ const Register = () => {
             </ErrorMessage>
           </div>
 
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="password2">Confirm Password</label>
-            <Field type="password" class="form-control"
+            <Field type="password" className="form-control"
             id="password2" 
             name="password2" 
             placeholder="Confirm password"
@@ -200,7 +201,7 @@ const Register = () => {
             Sign Up
           </button>
           </div>
-        </Form>
+        </form>
         
       </div>
 
